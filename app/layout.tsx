@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './portfolio.css';
 export const metadata: Metadata = {
-  title: 'Jiacai Song',
+  title: 'Jiacai Song | Moves & Makes',
   description: 'Portfolio.',
 };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
