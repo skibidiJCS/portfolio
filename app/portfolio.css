@@ -118,17 +118,10 @@ figcaption, .footer-bottom { color: var(--accent); }
   .community-stories { gap: 20px; }
   .community h3 { font-size: clamp(22px, 6vw, 32px); }
 }
-@keyframes poster-entry { from { opacity: 0; transform: translateY(6vw); } }
-@keyframes poster-pop { from { opacity: 0; transform: translateY(8vw) scale(.9); } }
-@keyframes mountain-drift { 50% { transform: scale(1.04); } }
+@keyframes poster-entry { from { transform: translateY(8px); } }
 @media (prefers-reduced-motion: no-preference) {
-  .brand, .intro, h1, .hero-portrait { animation: poster-entry 1s cubic-bezier(.2,.8,.2,1) both; }
-  .intro, h1 { animation-delay: .3s; }
-  .hero-portrait { animation-delay: .5s; }
-  .hero-portrait img { animation: mountain-drift 8s ease-in-out infinite; }
-
+  .intro, h1 { animation: poster-entry .24s ease-out; }
 }
-
 .team-cutout { filter: drop-shadow(0 3px 5px rgb(23 45 59 / .18)); }
 .community-stories { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .community-copy p { margin-top: .5rem; color: var(--accent); }
@@ -137,8 +130,10 @@ figcaption, .footer-bottom { color: var(--accent); }
 }
 @media (prefers-reduced-motion: no-preference) {
   :is(.project-scene, .chess-memory, .album-print, .community-story, .footer-bottom, h2) {
-    transition: opacity .5s ease-out, translate .6s cubic-bezier(.2,.75,.25,1);
+    transition: translate .24s cubic-bezier(.2,.75,.25,1);
   }
-  .awaiting-entry { opacity: 0; translate: 0 18px; }
-  .awaiting-entry:focus-within { opacity: 1; translate: none; }
+  .awaiting-entry { translate: 0 8px; }
+  .awaiting-entry:focus-within { translate: none; }
 }
+
+.chess-section .team-cutout { border-radius: 0; }

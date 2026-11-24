@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect } from 'react';
-import { StickerPhoto, type StickerSource } from './sticker-photo';
 import { ArrowUpRight } from 'lucide-react';
 
 const results = [
@@ -17,14 +16,9 @@ const projects = [
   {
     name: 'Lipscribe',
     cutout: 'lipscribe-team.webp',
+    link: 'https://devpost.com/software/lipscribe',
     alt: 'Our Lipscribe team at HackDécouverte',
     copy: 'Our team won 3rd place overall at HackDécouverte with Lipscribe.',
-  },
-  {
-    name: 'Mathematics',
-    image: 'optimath-finalist.jpg',
-    alt: 'Optimath finalist award',
-    copy: 'I reached the AQJM finals from 2023 to 2025 and the Optimath finals in 2025.',
   },
   {
     name: 'LookLens',
@@ -34,9 +28,16 @@ const projects = [
     copy: 'At MariHacks IX, my team built LookLens and won Best Use of Google Gemma.',
   },
   {
+    name: 'Mathematics',
+    cutout: 'math-award.webp',
+    alt: 'Optimath finalist award',
+    copy: 'I reached the AQJM finals from 2023 to 2025 and the Optimath finals in 2025.',
+  },
+  {
     name: 'respace',
-    video: 'https://www.youtube.com/embed/wYBMc4XSPHs',
-    copy: 'I’m building an app to scan rooms and plan furniture layouts. respace won the Excellent Award at the Canadian Youth Innovation Competition.',
+    cutout: 'respace-award.webp',
+    alt: 'The respace team holding the Excellent Award',
+    copy: 'respace won the Excellent Award at the Canadian Youth Innovation Competition.',
   },
 ];
 
@@ -76,19 +77,19 @@ export default function Home() {
         <div className="work-heading"><h2 className="reveal">Projects <i>& activities</i></h2></div>
         <div className="work-list">{projects.map((project, index) => <article className={'project-scroll project-scroll-' + index} key={project.name}><div className="project-scene">
           <div className="work-copy reveal"><h3>{project.link ? <a href={project.link} target="_blank" rel="noreferrer">{project.name} <ArrowUpRight aria-hidden="true"/></a> : project.name}</h3><p>{project.copy}</p></div>
-          <figure className="work-visual"><div className="photo-mat">{project.video ? <iframe className="project-video" src={project.video} title="respace app demo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen/> : project.cutout ? <img className="team-cutout" src={'/assets/' + project.cutout} alt={project.alt} loading="lazy"/> : <StickerPhoto source={project.image as StickerSource} alt={project.alt!}/>}</div></figure>
+          <figure className="work-visual"><div className="photo-mat"><img className="team-cutout" src={'/assets/' + project.cutout} alt={project.alt} loading="lazy"/></div></figure>
         </div></article>)}</div>
       </section>
       <section className="chess-section" id="chess">
-        <div className="chess-heading"><h2 className="reveal">Chess <i>results</i></h2></div>
+        <div className="chess-heading"><h2 className="reveal">Chess</h2></div>
         <div className="chess-gallery">
-          <figure className="chess-memory"><StickerPhoto source="chess-rapid-2024-3rd.jpg" alt="2024 Québec youth rapid chess podium"/><figcaption><div className="print-heading"><strong>3rd place</strong><span>2024</span></div><span>Québec youth rapid</span></figcaption></figure>
-          <figure className="chess-memory chess-memory-main"><StickerPhoto source="chess-rapid-2025-1st.jpg" alt="Full podium at the 2025 Québec youth rapid chess championship"/><figcaption><div className="print-heading"><strong>1st place</strong><span>2025</span></div><span>Québec youth rapid</span></figcaption></figure>
-          <figure className="chess-memory"><img src="/assets/team-quebec-ontario-2025-1st.jpg" alt="Québec team at the 2025 Québec versus Ontario tournament" loading="lazy"/><figcaption><div className="print-heading"><strong>1st place</strong><span>2025</span></div><span>Québec vs Ontario</span></figcaption></figure>
+          <figure className="chess-memory"><img loading="lazy" className="team-cutout" src="/assets/podium-2024.webp" alt="2024 Québec youth rapid chess podium"/><figcaption><div className="print-heading"><strong>3rd place</strong><span>2024</span></div><span>Québec youth rapid</span></figcaption></figure>
+          <figure className="chess-memory chess-memory-main"><img loading="lazy" className="team-cutout" src="/assets/podium-2025.webp" alt="Full podium at the 2025 Québec youth rapid chess championship"/><figcaption><div className="print-heading"><strong>1st place</strong><span>2025</span></div><span>Québec youth rapid</span></figcaption></figure>
+          <figure className="chess-memory"><img className="team-cutout" src="/assets/quebec-team.webp" alt="Québec team at the 2025 Québec versus Ontario tournament" loading="lazy"/><figcaption><div className="print-heading"><strong>1st place</strong><span>2025</span></div><span>Québec vs Ontario</span></figcaption></figure>
         </div>
         <div className="chess-album">{results.filter(result => result[2] === 'Participant').map(([year,name,,photo]) => <div className="album-entry" key={name}><figure className="album-print">
           <a href={'/assets/'+photo} target="_blank" rel="noreferrer" aria-label={'View photo: '+name}><img src={'/assets/'+photo} alt={name} loading="lazy"/></a>
-          <figcaption><div className="print-heading"><strong>{name.startsWith('Canadian') ? 'CYCC' : 'NAYCC'}</strong><span>{year}</span></div><span>{name}</span><span className="print-location">{name.startsWith('Canadian') ? 'Vancouver' : 'Kingston'}</span></figcaption>
+          <figcaption><div className="print-heading"><strong>{name.startsWith('Canadian') ? 'CYCC' : 'NAYCC'}</strong><span>{year}</span></div><span>{name}</span></figcaption>
         </figure></div>)}</div>
       </section>
       <section className="community community-connected" id="community">
@@ -96,7 +97,7 @@ export default function Home() {
         <div className="community-stories">
           <article className="community-story"><div className="community-logo"><img src="/assets/muhc.png" alt="McGill University Health Centre" loading="lazy"/></div><div className="community-copy reveal"><h3>McGill University Health Centre</h3></div></article>
           <article className="community-story"><div className="community-logo"><img src="/assets/lachine.png" alt="Demi-marathon Lachine" loading="lazy"/></div><div className="community-copy reveal"><h3>Demi-marathon Lachine</h3></div></article>
-          <article className="community-story"><div className="community-logo"><img src="/assets/wca-logo.svg" alt="" loading="lazy"/></div><div className="community-copy"><h3>World Cube Association</h3><p>Volunteer competition judge</p></div></article>
+          <article className="community-story"><div className="community-logo"><img src="/assets/wca-logo.svg" alt="" loading="lazy"/></div><div className="community-copy"><h3>World Cube Association</h3></div></article>
         </div>
       </section>
       <footer id="contact"><div className="footer-bottom"><a href="mailto:jiacai.song.qc@gmail.com">jiacai.song.qc@gmail.com</a><div><a href="https://github.com/skibidiJCS" target="_blank" rel="noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/jiacai-song-96612a39b/" target="_blank" rel="noreferrer">LinkedIn ↗</a></div></div><div className="footer-checks" aria-hidden="true"/></footer>
