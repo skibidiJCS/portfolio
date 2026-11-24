@@ -3,15 +3,6 @@
 import { useEffect } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 
-const results = [
-  ['2025', 'Championnat jeunesse du Québec · Rapid', '1st place', 'chess-rapid-2025-1st.jpg'],
-  ['2025', 'Québec vs Ontario · Collège Sainte-Anne', '1st place', 'team-quebec-ontario-2025-1st.jpg'],
-  ['2025', 'Championnat jeunesse du Québec', '2nd place', ''],
-  ['2024', 'Championnat jeunesse du Québec · Rapid', '3rd place', 'chess-rapid-2024-3rd.jpg'],
-  ['2024', 'Québec vs Ontario · Team tournament', '2nd place', ''],
-  ['2024–25', 'Canadian Youth Chess Championship', 'Participant', 'cycc-2025.jpg'],
-  ['2025', 'North American Youth Chess Championship', 'Participant', 'naycc-2025.jpg'],
-];
 const projects = [
   {
     name: 'Lipscribe',
@@ -44,7 +35,7 @@ const projects = [
 export default function Home() {
   useEffect(() => {
     if (!("IntersectionObserver" in window)) return;
-    const targets = document.querySelectorAll<HTMLElement>('.project-scene, .chess-memory, .album-print, .community-story, h2');
+    const targets = document.querySelectorAll<HTMLElement>('.project-scene, .chess-memory, .community-story, h2');
     const observer = new IntersectionObserver(entries => {
       for (const entry of entries) {
         if (entry.isIntersecting) {
@@ -87,10 +78,6 @@ export default function Home() {
           <figure className="chess-memory chess-memory-main"><img loading="lazy" className="team-cutout" src="/assets/podium-2025.webp" alt="Full podium at the 2025 Québec youth rapid chess championship"/><figcaption><div className="print-heading"><strong>1st place</strong><span>2025</span></div><span>Québec youth rapid</span></figcaption></figure>
           <figure className="chess-memory"><img className="team-cutout" src="/assets/quebec-team.webp" alt="Collège Sainte-Anne team at the 2025 Québec versus Ontario tournament" loading="lazy"/><figcaption><div className="print-heading"><strong>1st place</strong><span>2025</span></div><span>Québec vs Ontario · Collège Sainte-Anne</span></figcaption></figure>
         </div>
-        <div className="chess-album">{results.filter(result => result[2] === 'Participant').map(([year,name,,photo]) => <div className="album-entry" key={name}><figure className="album-print">
-          <a href={'/assets/'+photo} target="_blank" rel="noreferrer" aria-label={'View photo: '+name}><img src={'/assets/'+photo} alt={name} loading="lazy"/></a>
-          <figcaption><div className="print-heading"><strong>{name.startsWith('Canadian') ? 'CYCC' : 'NAYCC'}</strong><span>{year}</span></div><span>{name}</span></figcaption>
-        </figure></div>)}</div>
       </section>
       <section className="community community-connected" id="community">
         <div className="community-heading"><h2 className="reveal">Volunteering</h2></div>
