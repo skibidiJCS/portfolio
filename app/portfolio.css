@@ -130,10 +130,11 @@ figcaption, .footer-bottom { color: var(--accent); }
 }
 @media (prefers-reduced-motion: no-preference) {
   :is(.project-scene, .chess-memory, .album-print, .community-story, h2) {
-    transition: translate 420ms cubic-bezier(.2,.7,.3,1);
+    transform-origin: center top;
+    transition: translate 680ms cubic-bezier(.22,1.28,.32,1), scale 680ms cubic-bezier(.22,1.28,.32,1);
   }
-  .awaiting-entry { translate: 0 10px; transition: none; }
-  .awaiting-entry:focus-within { translate: none; }
+  .awaiting-entry { translate: 0 clamp(24px, 4vw, 48px); scale: .90; transition: none; }
+  .awaiting-entry:focus-within { translate: none; scale: none; }
 }
 
 .chess-section .team-cutout { border-radius: 0; }

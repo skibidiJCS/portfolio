@@ -52,9 +52,9 @@ export default function Home() {
           observer.unobserve(entry.target);
         }
       }
-    }, { rootMargin: "0px 0px 48px 0px" });
+    }, { rootMargin: "0px 0px -40px 0px" });
     for (const target of targets) {
-      if (target.getBoundingClientRect().top >= window.innerHeight + 48) {
+      if (target.getBoundingClientRect().top >= window.innerHeight) {
         target.classList.add('awaiting-entry');
         observer.observe(target);
       }
