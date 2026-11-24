@@ -16,7 +16,7 @@ const results = [
 const projects = [
   {
     name: 'Lipscribe',
-    image: 'lipscribe-hackdecouverte.png',
+    cutout: 'lipscribe-team.webp',
     alt: 'Our Lipscribe team at HackDécouverte',
     copy: 'Our team won 3rd place overall at HackDécouverte with Lipscribe.',
   },
@@ -28,7 +28,7 @@ const projects = [
   },
   {
     name: 'LookLens',
-    image: 'marihacks-ix-gemma.jpg',
+    cutout: 'looklens-team.webp',
     alt: 'MariHacks IX winning team',
     link: 'https://devpost.com/software/looklens',
     copy: 'At MariHacks IX, my team built LookLens and won Best Use of Google Gemma.',
@@ -36,23 +36,32 @@ const projects = [
   {
     name: 'respace',
     video: 'https://www.youtube.com/embed/wYBMc4XSPHs',
-    copy: 'Now I’m building an app to scan rooms and plan furniture layouts.',
+    copy: 'I’m building an app to scan rooms and plan furniture layouts. respace won the Excellent Award at the Canadian Youth Innovation Competition.',
   },
 ];
 
 export default function Home() {
   useEffect(() => {
     if (!("IntersectionObserver" in window)) return;
+    const targets = document.querySelectorAll<HTMLElement>('.project-scene, .chess-memory, .album-print, .community-story, .footer-bottom, h2');
     const observer = new IntersectionObserver(entries => {
       for (const entry of entries) {
         if (entry.isIntersecting) {
-          entry.target.classList.add('entered');
+          entry.target.classList.remove('awaiting-entry');
           observer.unobserve(entry.target);
         }
       }
-    }, { threshold: 0.08 });
-    document.querySelectorAll('.project-scene, .chess-memory, .album-print, .community-story, .hello, .footer-bottom, h2').forEach(el => observer.observe(el));
-    return () => observer.disconnect();
+    });
+    for (const target of targets) {
+      if (target.getBoundingClientRect().top >= window.innerHeight) {
+        target.classList.add('awaiting-entry');
+        observer.observe(target);
+      }
+    }
+    return () => {
+      observer.disconnect();
+      targets.forEach(target => target.classList.remove('awaiting-entry'));
+    };
   }, []);
   return <>
     <a className="skip-link" href="#work">Skip introduction</a>
@@ -67,7 +76,7 @@ export default function Home() {
         <div className="work-heading"><h2 className="reveal">Projects <i>& activities</i></h2></div>
         <div className="work-list">{projects.map((project, index) => <article className={'project-scroll project-scroll-' + index} key={project.name}><div className="project-scene">
           <div className="work-copy reveal"><h3>{project.link ? <a href={project.link} target="_blank" rel="noreferrer">{project.name} <ArrowUpRight aria-hidden="true"/></a> : project.name}</h3><p>{project.copy}</p></div>
-          <figure className="work-visual"><div className="photo-mat">{project.video ? <iframe className="project-video" src={project.video} title="respace app demo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen/> : <StickerPhoto source={project.image as StickerSource} alt={project.alt!}/>}</div></figure>
+          <figure className="work-visual"><div className="photo-mat">{project.video ? <iframe className="project-video" src={project.video} title="respace app demo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen/> : project.cutout ? <img className="team-cutout" src={'/assets/' + project.cutout} alt={project.alt} loading="lazy"/> : <StickerPhoto source={project.image as StickerSource} alt={project.alt!}/>}</div></figure>
         </div></article>)}</div>
       </section>
       <section className="chess-section" id="chess">
@@ -87,9 +96,10 @@ export default function Home() {
         <div className="community-stories">
           <article className="community-story"><div className="community-logo"><img src="/assets/muhc.png" alt="McGill University Health Centre" loading="lazy"/></div><div className="community-copy reveal"><h3>McGill University Health Centre</h3></div></article>
           <article className="community-story"><div className="community-logo"><img src="/assets/lachine.png" alt="Demi-marathon Lachine" loading="lazy"/></div><div className="community-copy reveal"><h3>Demi-marathon Lachine</h3></div></article>
+          <article className="community-story"><div className="community-logo"><img src="/assets/wca-logo.svg" alt="" loading="lazy"/></div><div className="community-copy"><h3>World Cube Association</h3><p>Volunteer competition judge</p></div></article>
         </div>
       </section>
-      <footer id="contact"><a className="hello" href="mailto:jiacai.song.qc@gmail.com">Contact<ArrowUpRight/></a><div className="footer-bottom"><a href="mailto:jiacai.song.qc@gmail.com">jiacai.song.qc@gmail.com</a><div><a href="https://github.com/skibidiJCS" target="_blank" rel="noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/jiacai-song-96612a39b/" target="_blank" rel="noreferrer">LinkedIn ↗</a></div></div><div className="footer-checks" aria-hidden="true"/></footer>
+      <footer id="contact"><div className="footer-bottom"><a href="mailto:jiacai.song.qc@gmail.com">jiacai.song.qc@gmail.com</a><div><a href="https://github.com/skibidiJCS" target="_blank" rel="noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/jiacai-song-96612a39b/" target="_blank" rel="noreferrer">LinkedIn ↗</a></div></div><div className="footer-checks" aria-hidden="true"/></footer>
     </main>
   </>;
 }

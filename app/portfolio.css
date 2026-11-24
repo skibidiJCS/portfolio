@@ -65,14 +65,6 @@ footer { padding-block: 45px; }
 .hello { display: flex; align-items: center; justify-content: space-between; font-size: clamp(56px, 11vw, 190px); letter-spacing: -.06em; }
 .hello svg { width: .65em; height: .65em; stroke-width: 1; }
 .footer-bottom { justify-content: space-between; flex-wrap: wrap; border-top: 1px solid #758894; padding-top: 18px; font-size: .9rem; }
-@keyframes rise { from { opacity: 0; transform: translateY(26px); } }
-@keyframes unveil { from { clip-path: inset(0 0 90%); } to { clip-path: inset(0); } }
-@media (prefers-reduced-motion: no-preference) {
-  h1 span { display: inline-block; animation: rise .85s both; }
-  .last-name { animation-delay: .12s; }
-  .hero-portrait { animation: unveil 1s .1s cubic-bezier(.18,.74,.23,1) both; }
-  .entered { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
-}
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 @media (max-width: 650px) {
   header { height: 62px; }
@@ -134,23 +126,19 @@ figcaption, .footer-bottom { color: var(--accent); }
   .intro, h1 { animation-delay: .3s; }
   .hero-portrait { animation-delay: .5s; }
   .hero-portrait img { animation: mountain-drift 8s ease-in-out infinite; }
-  h2.entered { animation: poster-pop .8s cubic-bezier(.34,1.56,.64,1) both; }
+
 }
 
-@keyframes photo-arrival {
-  from { opacity: 0; transform: translateY(32px) rotate(var(--tilt, -2deg)); }
+.team-cutout { filter: drop-shadow(0 3px 5px rgb(23 45 59 / .18)); }
+.community-stories { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.community-copy p { margin-top: .5rem; color: var(--accent); }
+@media (max-width: 650px) {
+  .community-stories { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (prefers-reduced-motion: no-preference) {
-  .project-scroll:nth-child(even), .community-story:nth-child(even) { --tilt: 2deg; }
-  .project-scene.entered .work-visual,
-  .chess-memory.entered img,
-  .album-print.entered img,
-  .community-story.entered .community-logo {
-    animation: photo-arrival .95s cubic-bezier(.18,.75,.24,1) both;
+  :is(.project-scene, .chess-memory, .album-print, .community-story, .footer-bottom, h2) {
+    transition: opacity .5s ease-out, translate .6s cubic-bezier(.2,.75,.25,1);
   }
-  .project-scene.entered .work-copy,
-  .community-story.entered h3,
-  .chess-memory.entered figcaption {
-    animation: rise .75s .15s both;
-  }
+  .awaiting-entry { opacity: 0; translate: 0 18px; }
+  .awaiting-entry:focus-within { opacity: 1; translate: none; }
 }
