@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-import './globals.css';
-import './sections.css';
+import './portfolio.css';
 export const metadata: Metadata = {
   title: 'Jiacai Song',
   description: 'Projects, chess results, and volunteering by Jiacai Song, a student in Montreal.',

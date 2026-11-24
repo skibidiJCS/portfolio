@@ -1,0 +1,156 @@
+:root {
+  --ink: #172d3b;
+  --paper: #f3f6f7;
+  --accent: #b54628;
+  --rule: #bdc9ce;
+  --gutter: clamp(22px, 5vw, 100px);
+  --serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; color: var(--ink); background: var(--paper); font: 16px/1.5 system-ui, sans-serif; }
+figure, h1, h2, h3, p { margin: 0; }
+a { color: inherit; text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: .22em; }
+a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+img { display: block; width: 100%; }
+header, .opening, .about, .work, .chess-section, .community, footer { padding-inline: var(--gutter); }
+header { display: flex; justify-content: space-between; align-items: center; height: 76px; }
+.brand { font: bold italic 38px/1 var(--serif); letter-spacing: -.08em; }
+.brand span, .intro, small { color: var(--accent); }
+nav, .footer-bottom, .footer-bottom div { display: flex; gap: clamp(18px, 3vw, 50px); }
+nav, small, .intro { font-size: .85rem; }
+.skip-link { position: absolute; top: 0; left: 5vw; transform: translateY(-120%); background: white; padding: .6rem; z-index: 2; }
+.skip-link:focus { transform: none; }
+.opening-stage { border-top: 1px solid var(--rule); padding-top: clamp(24px, 5vh, 70px); }
+.intro { letter-spacing: .04em; }
+h1, h2, h3, .hello { font-family: var(--serif); font-weight: 400; }
+h1 { font-size: clamp(48px, 15.6vw, 320px); line-height: 1.05; letter-spacing: -.075em; padding-bottom: .13em; }
+.last-name, h2 i { font-style: italic; }
+.hero-portrait { overflow: hidden; }
+.hero-portrait img { height: clamp(260px, 49svh, 660px); object-fit: cover; object-position: 50% 55%; }
+.interests > div { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 1rem; border-bottom: 1px solid var(--rule); padding-block: 1.1rem; }
+.interests span { font-size: .85rem; }
+.work, .chess-section, .community { padding-block: clamp(70px, 8vw, 160px); }
+h2 { font-size: clamp(44px, 7.8vw, 150px); line-height: 1.05; letter-spacing: -.06em; }
+.work-list, .community-stories, .chess-gallery { margin-top: clamp(32px, 5vw, 100px); }
+.project-scene { border-top: 1px solid var(--rule); padding-block: clamp(26px, 4vw, 78px); display: grid; grid-template-columns: 1fr 1.35fr; align-items: center; gap: 8vw; }
+.project-scroll:nth-child(even) .work-visual { order: -1; }
+.project-scroll:nth-child(even) .project-scene { grid-template-columns: 1.35fr 1fr; }
+.photo-mat img { width: auto; height: auto; max-width: 100%; max-height: 66svh; margin-inline: auto; }
+.project-video { display: block; width: 100%; border: 0; }
+.project-video { aspect-ratio: 16/9; }
+h3 { font-size: clamp(30px, 4.8vw, 85px); line-height: 1.07; letter-spacing: -.05em; margin: .15em 0 .35em; }
+.work-copy p { max-width: 32ch; }
+.project-link { display: inline-flex; align-items: center; gap: 12px; margin-top: 1.3rem; border-bottom: 1px solid; }
+.chess-section, footer { background: var(--ink); color: var(--paper); }
+.chess-gallery, .chess-album { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 3vw; }
+.chess-album { grid-template-columns: repeat(2,minmax(0,1fr)); margin-top: 5vw; }
+.chess-section img { height: auto; }
+.chess-section img { border-radius: clamp(12px, 2vw, 26px); }
+.sticker-photo { display: block; width: 100%; max-height: 62svh; overflow: visible; }
+.sticker-paper { filter: drop-shadow(0 2px 3px rgb(23 45 59 / .26)); }
+.chess-gallery, .chess-album { align-items: center; }
+figcaption { padding-top: 12px; }
+.print-heading { display: flex; justify-content: space-between; align-items: baseline; }
+.print-heading strong { font: 2rem var(--serif); }
+figcaption span { font-size: .86rem; }
+.print-location { display: block; opacity: .8; }
+.community-heading p { margin-top: 12px; }
+.community-story { display: flex; align-items: center; gap: 5vw; border-top: 1px solid var(--rule); padding-block: 30px; }
+.community-logo { width: 100px; flex: none; }
+.community-logo img { height: 70px; object-fit: contain; }
+.community h3 { font-size: clamp(24px, 3.5vw, 66px); }
+footer { padding-block: 45px; }
+.hello { display: flex; align-items: center; justify-content: space-between; font-size: clamp(56px, 11vw, 190px); letter-spacing: -.06em; }
+.hello svg { width: .65em; height: .65em; stroke-width: 1; }
+.footer-bottom { justify-content: space-between; flex-wrap: wrap; border-top: 1px solid #758894; padding-top: 18px; font-size: .9rem; }
+@keyframes rise { from { opacity: 0; transform: translateY(26px); } }
+@keyframes unveil { from { clip-path: inset(0 0 90%); } to { clip-path: inset(0); } }
+@media (prefers-reduced-motion: no-preference) {
+  h1 span { display: inline-block; animation: rise .85s both; }
+  .last-name { animation-delay: .12s; }
+  .hero-portrait { animation: unveil 1s .1s cubic-bezier(.18,.74,.23,1) both; }
+  .entered { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media (max-width: 650px) {
+  header { height: 62px; }
+  h1 { font-size: 16.2vw; margin-block: .14em; }
+  .project-scene, .project-scroll:nth-child(even) .project-scene, .chess-gallery, .chess-album { grid-template-columns: 1fr; gap: 24px; }
+  .project-scroll:nth-child(even) .work-visual { order: 0; }
+  .chess-album { margin-top: 34px; }
+  .community-logo { width: 64px; }
+  .interests span { font-size: .75rem; }
+}
+
+@font-face { font-family: Anton; src: url('/fonts/anton.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: Roboto; src: url('/fonts/roboto-bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+:root { --gutter: 4vw; }
+body { font-family: Roboto, Arial, sans-serif; font-weight: 700; }
+header { justify-content: center; height: auto; padding-block: 1.2vw 5.8vw; }
+.brand, h1, h2, h3, .hello, .print-heading strong { font-family: Anton, Impact, sans-serif; font-weight: 400; font-style: normal; text-transform: uppercase; line-height: 1.05; letter-spacing: -.02em; }
+.brand { font-size: clamp(28px, 3.4vw, 68px); }
+.opening { padding: 0; }
+.opening-stage { border: 0; padding-top: clamp(40px, 6vw, 116px); }
+.intro, h1 { margin-inline: var(--gutter); }
+.intro { font-size: clamp(32px, 6vw, 130px); line-height: 1; letter-spacing: -.045em; }
+h1 { margin-block: 0 2.5vw; font-size: 33vw; line-height: 1.1; padding: 0; }
+.hero-portrait {
+  margin-top: clamp(28px, 5vw, 90px);
+  mask-image: linear-gradient(to bottom, transparent, black 18%, black 83%, transparent);
+}
+.hero-portrait img { height: auto; }
+h2 { font-size: clamp(60px, 12vw, 230px); }
+h2 i { font-style: normal; }
+.project-scene { border: 0; }
+.work-copy p { color: var(--accent); font-size: clamp(24px, 3.15vw, 70px); letter-spacing: -.045em; line-height: 1.03; }
+.work-copy svg { display: inline; vertical-align: top; width: .4em; height: .4em; }
+.photo-mat { overflow: visible; }
+.chess-section, footer { background: var(--paper); color: var(--ink); }
+.print-heading strong { font-size: clamp(26px, 3.3vw, 70px); }
+figcaption, .footer-bottom { color: var(--accent); }
+.community-story, .footer-bottom { border: 0; }
+.community-stories {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(32px, 7vw, 130px);
+}
+.community-story { display: grid; justify-items: start; align-content: start; gap: 1.25rem; padding: 0; }
+
+.community-logo { width: clamp(96px, 13vw, 180px); aspect-ratio: 1; }
+.community-logo img { width: 100%; height: 100%; object-fit: contain; object-position: left bottom; }
+.community h3 { max-width: 14ch; margin: 0; }
+.community-story:nth-child(even) h3 { color: var(--accent); }
+@media (max-width: 540px) {
+  .community-stories { gap: 20px; }
+  .community h3 { font-size: clamp(22px, 6vw, 32px); }
+}
+@keyframes poster-entry { from { opacity: 0; transform: translateY(6vw); } }
+@keyframes poster-pop { from { opacity: 0; transform: translateY(8vw) scale(.9); } }
+@keyframes mountain-drift { 50% { transform: scale(1.04); } }
+@media (prefers-reduced-motion: no-preference) {
+  .brand, .intro, h1, .hero-portrait { animation: poster-entry 1s cubic-bezier(.2,.8,.2,1) both; }
+  .intro, h1 { animation-delay: .3s; }
+  .hero-portrait { animation-delay: .5s; }
+  .hero-portrait img { animation: mountain-drift 8s ease-in-out infinite; }
+  h2.entered { animation: poster-pop .8s cubic-bezier(.34,1.56,.64,1) both; }
+}
+
+@keyframes photo-arrival {
+  from { opacity: 0; transform: translateY(32px) rotate(var(--tilt, -2deg)); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .project-scroll:nth-child(even), .community-story:nth-child(even) { --tilt: 2deg; }
+  .project-scene.entered .work-visual,
+  .chess-memory.entered img,
+  .album-print.entered img,
+  .community-story.entered .community-logo {
+    animation: photo-arrival .95s cubic-bezier(.18,.75,.24,1) both;
+  }
+  .project-scene.entered .work-copy,
+  .community-story.entered h3,
+  .chess-memory.entered figcaption {
+    animation: rise .75s .15s both;
+  }
+}
