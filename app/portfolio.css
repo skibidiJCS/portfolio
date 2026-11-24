@@ -129,11 +129,12 @@ figcaption, .footer-bottom { color: var(--accent); }
   .community-stories { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (prefers-reduced-motion: no-preference) {
-  :is(.project-scene, .chess-memory, .album-print, .community-story, .footer-bottom, h2) {
-    transition: translate .24s cubic-bezier(.2,.75,.25,1);
+  :is(.work-copy, .work-visual, .chess-memory, .album-print, .community-story, h2) {
+    transition: clip-path .45s cubic-bezier(.2,.75,.25,1), translate .45s ease-out;
+    clip-path: inset(-20px);
   }
-  .awaiting-entry { translate: 0 8px; }
-  .awaiting-entry:focus-within { translate: none; }
+  .awaiting-entry { clip-path: inset(-20px -20px 100%); translate: 0 12px; transition: none; }
+  .awaiting-entry:focus-within { clip-path: none; translate: none; }
 }
 
 .chess-section .team-cutout { border-radius: 0; }

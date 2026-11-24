@@ -44,7 +44,7 @@ const projects = [
 export default function Home() {
   useEffect(() => {
     if (!("IntersectionObserver" in window)) return;
-    const targets = document.querySelectorAll<HTMLElement>('.project-scene, .chess-memory, .album-print, .community-story, .footer-bottom, h2');
+    const targets = document.querySelectorAll<HTMLElement>('.work-copy, .work-visual, .chess-memory, .album-print, .community-story, h2');
     const observer = new IntersectionObserver(entries => {
       for (const entry of entries) {
         if (entry.isIntersecting) {
@@ -52,7 +52,7 @@ export default function Home() {
           observer.unobserve(entry.target);
         }
       }
-    });
+    }, { rootMargin: "0px 0px -16px 0px" });
     for (const target of targets) {
       if (target.getBoundingClientRect().top >= window.innerHeight) {
         target.classList.add('awaiting-entry');
